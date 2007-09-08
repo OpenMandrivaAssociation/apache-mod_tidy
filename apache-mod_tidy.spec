@@ -6,7 +6,7 @@
 Summary:	Mod_tidy is a DSO module for the apache web server
 Name:		apache-%{mod_name}
 Version:	0.5.5
-Release:	%mkrel 2
+Release:	%mkrel 3
 Group:		System/Servers
 License:	Apache License
 URL:		http://mod-tidy.sourceforge.net/
@@ -21,8 +21,6 @@ Requires:	apache >= 2.0.55
 BuildRequires:	apache-devel >= 2.0.55
 BuildRequires:	tidy-devel
 BuildRequires:	file
-Provides:	apache2-mod_tidy
-Obsoletes:	apache2-mod_tidy
 Epoch:		1
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
