@@ -22,7 +22,6 @@ BuildRequires:	apache-devel >= 2.0.55
 BuildRequires:	tidy-devel
 BuildRequires:	file
 Epoch:		1
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 mod_tidy is a TidyLib based DSO module for the Apache HTTP Server
