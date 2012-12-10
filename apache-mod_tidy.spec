@@ -6,7 +6,7 @@
 Summary:	DSO module for the apache web server
 Name:		apache-%{mod_name}
 Version:	0.5.5
-Release:	%mkrel 13
+Release:	13
 Group:		System/Servers
 License:	Apache License
 URL:		http://mod-tidy.sourceforge.net/
@@ -22,7 +22,6 @@ BuildRequires:	apache-devel >= 2.0.55
 BuildRequires:	tidy-devel
 BuildRequires:	file
 Epoch:		1
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 mod_tidy is a TidyLib based DSO module for the Apache HTTP Server
@@ -42,10 +41,9 @@ find . -type f|xargs file|grep 'text'|cut -d: -f1|xargs perl -p -i -e 's/\r//'
 
 %build
  
-%{_sbindir}/apxs -ltidy -c src/%{mod_name}.c
+%{_bindir}/apxs -ltidy -c src/%{mod_name}.c
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 install -d %{buildroot}%{_libdir}/apache-extramodules
 install -d %{buildroot}%{_sysconfdir}/httpd/modules.d
@@ -71,13 +69,121 @@ if [ "$1" = "0" ]; then
 fi
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
 %doc README Changes
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/httpd/modules.d/%{mod_conf}
 %attr(0755,root,root) %{_libdir}/apache-extramodules/%{mod_so}
 %{_var}/www/html/addon-modules/*
 
+
+
+
+%changelog
+* Sat Feb 11 2012 Oden Eriksson <oeriksson@mandriva.com> 1:0.5.5-13mdv2012.0
++ Revision: 772773
+- rebuild
+
+* Tue May 24 2011 Oden Eriksson <oeriksson@mandriva.com> 1:0.5.5-12
++ Revision: 678427
+- mass rebuild
+
+* Sun Oct 24 2010 Oden Eriksson <oeriksson@mandriva.com> 1:0.5.5-11mdv2011.0
++ Revision: 588073
+- rebuild
+
+* Mon Mar 08 2010 Oden Eriksson <oeriksson@mandriva.com> 1:0.5.5-10mdv2010.1
++ Revision: 516189
+- rebuilt for apache-2.2.15
+
+* Sat Aug 01 2009 Oden Eriksson <oeriksson@mandriva.com> 1:0.5.5-9mdv2010.0
++ Revision: 406661
+- rebuild
+
+* Mon Jul 14 2008 Oden Eriksson <oeriksson@mandriva.com> 1:0.5.5-8mdv2009.0
++ Revision: 235112
+- rebuild
+
+* Thu Jun 05 2008 Oden Eriksson <oeriksson@mandriva.com> 1:0.5.5-7mdv2009.0
++ Revision: 215653
+- fix rebuild
+
+* Sun Mar 09 2008 Oden Eriksson <oeriksson@mandriva.com> 1:0.5.5-6mdv2008.1
++ Revision: 182871
+- rebuild
+
+* Mon Feb 18 2008 Thierry Vignaud <tv@mandriva.org> 1:0.5.5-5mdv2008.1
++ Revision: 170754
+- rebuild
+- fix "foobar is blabla" summary (=> "blabla") so that it looks nice in rpmdrake
+- kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <blino@mandriva.org>
+    - restore BuildRoot
+
+* Fri Dec 14 2007 Thierry Vignaud <tv@mandriva.org> 1:0.5.5-4mdv2008.1
++ Revision: 119826
+- rebuild b/c of missing package on ia32
+
+* Sat Sep 08 2007 Oden Eriksson <oeriksson@mandriva.com> 1:0.5.5-3mdv2008.0
++ Revision: 82685
+- rebuild
+
+
+* Sat Mar 10 2007 Oden Eriksson <oeriksson@mandriva.com> 0.5.5-2mdv2007.1
++ Revision: 140763
+- rebuild
+
+* Thu Nov 09 2006 Oden Eriksson <oeriksson@mandriva.com> 1:0.5.5-1mdv2007.0
++ Revision: 79525
+- Import apache-mod_tidy
+
+* Mon Jul 03 2006 Oden Eriksson <oeriksson@mandriva.com> 1:0.5.5-1mdv2007.0
+- 0.5.5
+- drop upstream apache220 patch (P0)
+
+* Fri Dec 16 2005 Oden Eriksson <oeriksson@mandriva.com> 1:0.5.3-2mdk
+- rebuilt against apache-2.2.0 (P0)
+
+* Mon Nov 28 2005 Oden Eriksson <oeriksson@mandriva.com> 1:0.5.3-1mdk
+- 0.5.3
+- fix versioning
+
+* Sun Jul 31 2005 Oden Eriksson <oeriksson@mandriva.com> 2.0.54_0.5-1mdk
+- 0.5
+- new upstream maintainer (Sierk Bornemann)
+
+* Sun Jul 31 2005 Oden Eriksson <oeriksson@mandriva.com> 2.0.54_0.3-2mdk
+- fix deps
+
+* Fri Jun 03 2005 Oden Eriksson <oeriksson@mandriva.com> 2.0.54_0.3-1mdk
+- rename the package
+- the conf.d directory is renamed to modules.d
+- use new rpm-4.4.x pre,post magic
+
+* Sun Mar 20 2005 Oden Eriksson <oeriksson@mandrakesoft.com> 2.0.53_0.3-4mdk
+- use the %1
+
+* Mon Feb 28 2005 Oden Eriksson <oeriksson@mandrakesoft.com> 2.0.53_0.3-3mdk
+- fix %%post and %%postun to prevent double restarts
+- fix bug #6574
+
+* Wed Feb 16 2005 Oden Eriksson <oeriksson@mandrakesoft.com> 2.0.53_0.3-2mdk
+- spec file cleanups, remove the ADVX-build stuff
+
+* Tue Feb 08 2005 Oden Eriksson <oeriksson@mandrakesoft.com> 2.0.53_0.3-1mdk
+- rebuilt for apache 2.0.53
+
+* Wed Sep 29 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 2.0.52_0.3-1mdk
+- built for apache 2.0.52
+
+* Fri Sep 17 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 2.0.51_0.3-1mdk
+- built for apache 2.0.51
+
+* Tue Jul 13 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 2.0.50_0.3-1mdk
+- built for apache 2.0.50
+- remove redundant provides
+
+* Tue Jun 15 2004 Oden Eriksson <oden.eriksson@kvikkjokk.net> 2.0.49_0.3-1mdk
+- built for apache 2.0.49
 
