@@ -9,8 +9,8 @@ Version:	0.5.5
 Release:	15
 Group:		System/Servers
 License:	Apache License
-URL:		http://mod-tidy.sourceforge.net/
-Source0:	http://www.gknw.at/development/apache/httpd-2.0/unix/modules/%{mod_name}-%{version}.tar.bz2
+URL:		https://mod-tidy.sourceforge.net/
+Source0:	https://mod-tidy.sourceforge.net/src/%{mod_name}-%{version}.tar.gz
 Source1:	%{mod_conf}.bz2
 Requires(pre): rpm-helper
 Requires(postun): rpm-helper
