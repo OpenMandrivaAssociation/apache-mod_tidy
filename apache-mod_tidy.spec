@@ -6,7 +6,7 @@
 Summary:	DSO module for the apache web server
 Name:		apache-%{mod_name}
 Version:	0.5.5
-Release:	14
+Release:	15
 Group:		System/Servers
 License:	Apache License
 URL:		http://mod-tidy.sourceforge.net/
@@ -30,7 +30,7 @@ Version 2 to parse, clean-up and pretty-print the webservers'
 
 %prep
 
-%setup -q -n %{mod_name}-%{version}
+%autosetup  -n %{mod_name}-%{version}
 
 # fix strange perms
 chmod 644 README Changes
