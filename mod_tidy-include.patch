@@ -1,0 +1,12 @@
+--- a/src/mod_tidy.c
++++ b/src/mod_tidy.c
+@@ -60,7 +60,7 @@
+ 
+ /* TidyLib headers */
+ #include "tidy.h"
+-#include "buffio.h"
++#include "tidybuffio.h"
+ 
+ /* mod_tidy headers */
+ #include "mod_tidy.h"
+
